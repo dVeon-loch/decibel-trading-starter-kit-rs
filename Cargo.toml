@@ -21,3 +21,5 @@ reqwest = { version = "0.13", default-features = false, features = [
 smart-default = "0.7"
 secrecy = "0.10"
 dotenvy = "0.15"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "ansi"] }
+ansi_term = { version = "0.12", features = ["derive_serde_style", "serde"] }
