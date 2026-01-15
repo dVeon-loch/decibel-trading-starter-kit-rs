@@ -2,6 +2,22 @@
 name = "decibel-trading-starter-kit-rs"
 version = "0.1.0"
 edition = "2024"
+authors = ["Veon (https://github.com/dVeon-loch)"]
 
 [dependencies]
 aptos-rust-sdk-v2 = { git = "https://github.com/aptos-labs/aptos-rust-sdk.git", rev = "a2a5dd4893554fe4f069727897b75ceb1cf99c74", package = "aptos-rust-sdk-v2" }
+tokio = { version = "1.49", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tracing = "0.1"
+eyre = "0.6.12"
+reqwest = { version = "0.13", default-features = false, features = [
+    "rustls",
+    "json",
+    "http2",
+    "system-proxy",
+    "charset",
+] }
+smart-default = "0.7"
+secrecy = "0.10"
+dotenvy = "0.15"
