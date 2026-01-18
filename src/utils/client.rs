@@ -1,23 +1,47 @@
-use aptos_rust_sdk_v2::Aptos;
+use aptos_rust_sdk_v2::{Aptos, AptosConfig};
+use reqwest::Client;
 
-/// Creates and configures an Aptos client for blockchain interactions.
+use crate::utils::config::Config;
+
+/// A client for interacting with the Decibel trading platform.
 ///
-/// TODO: Documentation reference
-pub fn create_aptos_client() -> eyre::Result<Aptos> {
-    todo!()
+/// Wraps both an Aptos blockchain client and an HTTP client for REST API calls.
+pub struct DecibelClient {
+    /// Aptos client for blockchain interactions
+    pub aptos: Aptos,
+    /// HTTP client for REST API requests
+    pub http_client: Client,
+}
+
+impl DecibelClient {
+    /// Creates a new DecibelClient with default client configurations.
+    ///
+    /// ### Arguments
+    /// - `config` - The application configuration containing URLs and credentials
+    ///
+    /// ### Returns
+    /// A configured DecibelClient ready for use
+    pub fn new(config: &Config) -> eyre::Result<Self> {
+        let aptos_config = AptosConfig::custom(config.fullnode_url.as_str())?;
+
+        let aptos = Aptos::new(aptos_config)?;
+        let http_client = Client::new();
+
+        Ok(Self { aptos, http_client })
+    }
+
+    /// Helper to wait for transaction confirmation with better error handling.
+    ///
+    /// Returns the committed transaction response for event extraction.
+    pub async fn wait_for_transaction(&self, tx_hash: &str) -> eyre::Result<()> {
+        todo!()
+    }
 }
 
 /// Creates an account instance from private key for signing transactions.
 ///
 /// TODO: Documentation reference
 pub fn create_account() -> eyre::Result<()> {
-    todo!()
-}
-
-/// Helper to wait for transaction confirmation with better error handling.
-///
-/// Returns the committed transaction response for event extraction.
-pub async fn wait_for_transaction(aptos: &Aptos, tx_hash: &str) -> eyre::Result<()> {
     todo!()
 }
 

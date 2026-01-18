@@ -242,9 +242,11 @@ pub struct RequestInit {
     pub body: Option<Body>,
 }
 
+
+
 /// Makes an authenticated fetch request to the Decibel API.
 ///
 /// Automatically includes the Bearer token if [`API_BEARER_TOKEN`] is configured.
 pub async fn authenticated_fetch(url: &str, options: RequestInit) -> eyre::Result<Response> {
-    todo!()
+    let request = reqwest::RequestBuilder::
 }
